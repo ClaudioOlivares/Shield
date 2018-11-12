@@ -40,7 +40,7 @@ public class movimiento : MonoBehaviour {
             rb.velocity = new Vector2(0, rb.velocity.y);
 
         }
-        if (Input.GetKey(KeyCode.W) && isgrounded)
+        if (Input.GetKeyDown(KeyCode.W) && isgrounded)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpheight);
 
