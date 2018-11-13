@@ -9,7 +9,9 @@ public class cambiodecolor : MonoBehaviour {
     
 	// Use this for initialization
 	void Start () {
-        contadormateriales = 1;
+        contadormateriales = 0;
+        cambiartag();
+
         mr = GetComponent<MeshRenderer>();
 	}
 	
@@ -19,17 +21,19 @@ public class cambiodecolor : MonoBehaviour {
         cambiartag();
 		if(Input.GetKeyDown(KeyCode.F))
         {
-            mr.material = materiales[contadormateriales];
             if (contadormateriales == 2)
+            {
                 contadormateriales = 0;
+            }
             else
             {
                 contadormateriales++;
             }
 
-            
+            mr.material = materiales[contadormateriales];
+
         }
-	}
+    }
     public void cambiartag()
     {
         if(contadormateriales == 0)
