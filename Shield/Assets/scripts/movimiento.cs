@@ -10,51 +10,100 @@ public class movimiento : MonoBehaviour {
     public GameObject groundchecker;
     public float groundcheckerradius;
     public float fallmultiplayer, lowjumpmultiplayer;
-
+    public bool isrunning,isjumping;
+    public bool mirandoarriba, mirandoabajo,corriendoizquierda,corriendoderecha;
+    private Animator animb, anims;
     // Use this for initialization
     void Start() {
         rb = GetComponent<Rigidbody2D>();
-
+        animb = transform.GetChild(0).GetComponent<Animator>();
+        anims = transform.GetChild(1).GetComponent<Animator>();
 
     }
 
     // Update is called once per frame
     void Update() {
-        isgrounded = Physics2D.OverlapCircle(groundchecker.transform.position, groundcheckerradius, whatisground);
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
         {
-            rb.velocity = new Vector2(speed, rb.velocity.y);
+            corriendoderecha = true;
+            isrunning = true;
+            /*gameObject.transform.localScale = new Vector3(1, 1, 1);
+            rb.velocity = new Vector2(speed, rb.velocity.y);*/
         }
         if (Input.GetKeyUp(KeyCode.D))
         {
-            rb.velocity = new Vector2(0, rb.velocity.y);
+            animb.SetBool("runbody", false);
+            anims.SetBool("runshield",false);
+            corriendoderecha = false;
+            isrunning = false;
+            if (isgrounded)
+            {
+                rb.velocity = new Vector2(0, rb.velocity.y);
+            }
+        
 
         }
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
         {
-            rb.velocity = new Vector2(-speed, rb.velocity.y);
+            corriendoizquierda = true;
+            isrunning = true;
+           /* gameObject.transform.localScale = new Vector3(-1, 1, 1);
+
+            rb.velocity = new Vector2(-speed, rb.velocity.y);*/
 
         }
         if (Input.GetKeyUp(KeyCode.A))
         {
-            rb.velocity = new Vector2(0, rb.velocity.y);
+            animb.SetBool("runbody", false);
+            anims.SetBool("runshield", false);
+            corriendoizquierda = false;
+            isrunning = false;
+            if (isgrounded)
+            {
+                rb.velocity = new Vector2(0, rb.velocity.y);
+            }
 
         }
-        if (Input.GetKeyDown(KeyCode.W) && isgrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && isgrounded)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpheight);
-
+            animb.SetBool("jumpbody", true);
+            anims.SetBool("jumpshield",true);
+            isjumping = true;
         }
 
     }
     private void FixedUpdate()
     {
+        isgrounded = Physics2D.OverlapCircle(groundchecker.transform.position, groundcheckerradius, whatisground);
+
+        if(isgrounded && rb.velocity.y == 0)
+        {
+            animb.SetBool("jumpbody", false);
+            anims.SetBool("jumpshield", false);
+        }
+        if (isrunning && corriendoderecha)
+        {
+  
+            gameObject.transform.localScale = new Vector3(1, 1, 1);
+            animb.SetBool("runbody",true);
+            anims.SetBool("runshield", true);
+            rb.velocity = new Vector2(speed, rb.velocity.y);
+        }
+        if(isrunning && corriendoizquierda)
+        {
+            gameObject.transform.localScale = new Vector3(-1, 1, 1);
+            animb.SetBool("runbody", true);
+            anims.SetBool("runshield", true);
+            rb.velocity = new Vector2(-speed, rb.velocity.y);
+        }
+        
         if (rb.velocity.y < 0)
         {
             rb.velocity += Vector2.up * Physics2D.gravity.y * (fallmultiplayer - 1) * Time.deltaTime;
 
         }
-        else if (rb.velocity.y > 0 && !Input.GetKey(KeyCode.W) )
+        else if (rb.velocity.y > 0 && !Input.GetKey(KeyCode.Space) )
         {
             rb.velocity += Vector2.up * Physics2D.gravity.y * (lowjumpmultiplayer - 1) * Time.deltaTime;
         }
@@ -62,9 +111,10 @@ public class movimiento : MonoBehaviour {
         if (rb.velocity.y < 0 )
         {
             rb.velocity += Vector2.up * Physics2D.gravity.y * (fallmultiplayer - 1) * Time.deltaTime;
+           
 
         }
-        else if (rb.velocity.y > 0 && !Input.GetKey(KeyCode.W) )
+        else if (rb.velocity.y > 0 && !Input.GetKey(KeyCode.Space) )
         {
             rb.velocity += Vector2.up * Physics2D.gravity.y * (lowjumpmultiplayer - 1) * Time.deltaTime;
         }

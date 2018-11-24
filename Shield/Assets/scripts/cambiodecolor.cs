@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class cambiodecolor : MonoBehaviour {
-    private MeshRenderer mr;
-    public Material [] materiales;
+    //  private MeshRenderer mr;
+    public Color[] colores;
     public int contadormateriales;
+    private SpriteRenderer mr;
     
 	// Use this for initialization
 	void Start () {
         contadormateriales = 0;
         cambiartag();
-
-        mr = GetComponent<MeshRenderer>();
+        mr = GetComponent<SpriteRenderer>();
+        mr.color = colores[contadormateriales];
 	}
 	
 	// Update is called once per frame
@@ -30,7 +31,7 @@ public class cambiodecolor : MonoBehaviour {
                 contadormateriales++;
             }
 
-            mr.material = materiales[contadormateriales];
+            mr.color = colores[contadormateriales];
 
         }
     }
