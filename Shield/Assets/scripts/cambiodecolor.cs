@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class cambiodecolor : MonoBehaviour {
     //  private MeshRenderer mr;
-    public Color[] colores;
+    public Material [] colores;
     public int contadormateriales;
-    private SpriteRenderer mr;
+    private MeshRenderer mr;
     
 	// Use this for initialization
 	void Start () {
         contadormateriales = 0;
         cambiartag();
-        mr = GetComponent<SpriteRenderer>();
-        mr.color = colores[contadormateriales];
+        mr = GetComponent<MeshRenderer>();
+        mr.material = colores[contadormateriales];
 	}
 	
 	// Update is called once per frame
@@ -31,7 +31,7 @@ public class cambiodecolor : MonoBehaviour {
                 contadormateriales++;
             }
 
-            mr.color = colores[contadormateriales];
+            mr.material = colores[contadormateriales];
 
         }
     }

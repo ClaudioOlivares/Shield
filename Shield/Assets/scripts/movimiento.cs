@@ -13,11 +13,12 @@ public class movimiento : MonoBehaviour {
     public bool isrunning,isjumping;
     public bool mirandoarriba, mirandoabajo,corriendoizquierda,corriendoderecha;
     private Animator animb, anims;
+    public bool dadovuelta;
     // Use this for initialization
     void Start() {
         rb = GetComponent<Rigidbody2D>();
-        animb = transform.GetChild(0).GetComponent<Animator>();
-        anims = transform.GetChild(1).GetComponent<Animator>();
+       // animb = transform.GetChild(0).GetComponent<Animator>();
+       // anims = transform.GetChild(1).GetComponent<Animator>();
 
     }
 
@@ -27,48 +28,47 @@ public class movimiento : MonoBehaviour {
         {
             corriendoderecha = true;
             isrunning = true;
-            /*gameObject.transform.localScale = new Vector3(1, 1, 1);
-            rb.velocity = new Vector2(speed, rb.velocity.y);*/
+           // gameObject.transform.localScale = new Vector3(1, 1, 1);
+            dadovuelta = false;
+           rb.velocity = new Vector2(speed, rb.velocity.y);
         }
         if (Input.GetKeyUp(KeyCode.D))
         {
-            animb.SetBool("runbody", false);
-            anims.SetBool("runshield",false);
+           // animb.SetBool("runbody", false);
+          //  anims.SetBool("runshield",false);
             corriendoderecha = false;
             isrunning = false;
-            if (isgrounded)
-            {
-                rb.velocity = new Vector2(0, rb.velocity.y);
-            }
-        
+             //rb.velocity = new Vector2(0, rb.velocity.y);
+           
 
         }
         if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
         {
             corriendoizquierda = true;
             isrunning = true;
-           /* gameObject.transform.localScale = new Vector3(-1, 1, 1);
+           // gameObject.transform.localScale = new Vector3(-1, 1, 1);
+            dadovuelta = true;
 
-            rb.velocity = new Vector2(-speed, rb.velocity.y);*/
+           // rb.velocity = new Vector2(-speed, rb.velocity.y); 
 
         }
         if (Input.GetKeyUp(KeyCode.A))
         {
-            animb.SetBool("runbody", false);
-            anims.SetBool("runshield", false);
+          //  animb.SetBool("runbody", false);
+          //  anims.SetBool("runshield", false);
             corriendoizquierda = false;
             isrunning = false;
-            if (isgrounded)
-            {
-                rb.velocity = new Vector2(0, rb.velocity.y);
-            }
+         
+            rb.velocity = new Vector2(0, rb.velocity.y);
+         
+            
 
         }
         if (Input.GetKeyDown(KeyCode.Space) && isgrounded)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpheight);
-            animb.SetBool("jumpbody", true);
-            anims.SetBool("jumpshield",true);
+          //  animb.SetBool("jumpbody", true);
+          //  anims.SetBool("jumpshield",true);
             isjumping = true;
         }
 
@@ -79,23 +79,23 @@ public class movimiento : MonoBehaviour {
 
         if(isgrounded && rb.velocity.y == 0)
         {
-            animb.SetBool("jumpbody", false);
-            anims.SetBool("jumpshield", false);
+          //  animb.SetBool("jumpbody", false);
+           // anims.SetBool("jumpshield", false);
         }
         if (isrunning && corriendoderecha)
         {
   
             gameObject.transform.localScale = new Vector3(1, 1, 1);
-            animb.SetBool("runbody",true);
-            anims.SetBool("runshield", true);
+          //  animb.SetBool("runbody",true);
+         //   anims.SetBool("runshield", true);
             rb.velocity = new Vector2(speed, rb.velocity.y);
         }
         if(isrunning && corriendoizquierda)
         {
             gameObject.transform.localScale = new Vector3(-1, 1, 1);
-            animb.SetBool("runbody", true);
-            anims.SetBool("runshield", true);
-            rb.velocity = new Vector2(-speed, rb.velocity.y);
+           // animb.SetBool("runbody", true);
+           // anims.SetBool("runshield", true);
+           rb.velocity = new Vector2(-speed, rb.velocity.y);
         }
         
         if (rb.velocity.y < 0)
