@@ -31815,16 +31815,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdac6b9ad40648147af53c288866ecc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpheight: 2.8
-  speed: 0.6
+  jumpheight: 4
+  speed: 0.8
   isgrounded: 0
   whatisground:
     serializedVersion: 2
     m_Bits: 256
   groundchecker: {fileID: 1527147588}
   groundcheckerradius: 0.1
-  fallmultiplayer: 3.2
-  lowjumpmultiplayer: 3
+  fallmultiplayer: 2
+  lowjumpmultiplayer: 1.4
   isrunning: 0
   isjumping: 0
   mirandoarriba: 0
