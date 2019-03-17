@@ -31815,7 +31815,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdac6b9ad40648147af53c288866ecc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpheight: 4
+  jumpheight: 175
   speed: 0.8
   isgrounded: 0
   whatisground:

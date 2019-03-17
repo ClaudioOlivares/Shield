@@ -14,6 +14,7 @@ public class movimiento : MonoBehaviour {
     public bool mirandoarriba, mirandoabajo,corriendoizquierda,corriendoderecha;
     private Animator animb, anims;
     public bool dadovuelta;
+    private bool jumprequest;
     // Use this for initialization
     void Start() {
         rb = GetComponent<Rigidbody2D>();
@@ -66,7 +67,7 @@ public class movimiento : MonoBehaviour {
         }
         if (Input.GetKeyDown(KeyCode.Space) && isgrounded)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpheight);
+            jumprequest = true;
           //  animb.SetBool("jumpbody", true);
           //  anims.SetBool("jumpshield",true);
             isjumping = true;
@@ -76,7 +77,11 @@ public class movimiento : MonoBehaviour {
     private void FixedUpdate()
     {
         isgrounded = Physics2D.OverlapCircle(groundchecker.transform.position, groundcheckerradius, whatisground);
-
+        if(jumprequest)
+        {
+            jump();
+            jumprequest = false;
+        }
         if(isgrounded && rb.velocity.y == 0)
         {
           //  animb.SetBool("jumpbody", false);
@@ -118,5 +123,10 @@ public class movimiento : MonoBehaviour {
         {
             rb.velocity += Vector2.up * Physics2D.gravity.y * (lowjumpmultiplayer - 1) * Time.deltaTime;
         }
+    }
+    void jump()
+    {
+       // rb.velocity = new Vector2(rb.velocity.x, jumpheight);
+        rb.AddForce(new Vector2(0,jumpheight));
     }
 }
