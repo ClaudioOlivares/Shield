@@ -17,8 +17,8 @@ public class movimiento : MonoBehaviour {
     // Use this for initialization
     void Start() {
         rb = GetComponent<Rigidbody2D>();
-       // animb = transform.GetChild(0).GetComponent<Animator>();
-       // anims = transform.GetChild(1).GetComponent<Animator>();
+        animb = transform.GetChild(0).GetComponent<Animator>();
+        anims = transform.GetChild(1).GetComponent<Animator>();
 
     }
 
@@ -34,8 +34,8 @@ public class movimiento : MonoBehaviour {
         }
         if (Input.GetKeyUp(KeyCode.D))
         {
-           // animb.SetBool("runbody", false);
-          //  anims.SetBool("runshield",false);
+           animb.SetBool("run_body", false);
+           anims.SetBool("run_shield",false);
             corriendoderecha = false;
             isrunning = false;
              //rb.velocity = new Vector2(0, rb.velocity.y);
@@ -54,8 +54,8 @@ public class movimiento : MonoBehaviour {
         }
         if (Input.GetKeyUp(KeyCode.A))
         {
-          //  animb.SetBool("runbody", false);
-          //  anims.SetBool("runshield", false);
+            animb.SetBool("run_body", false);
+            anims.SetBool("run_shield", false);
             corriendoizquierda = false;
             isrunning = false;
          
@@ -86,15 +86,15 @@ public class movimiento : MonoBehaviour {
         {
   
             gameObject.transform.localScale = new Vector3(1, 1, 1);
-          //  animb.SetBool("runbody",true);
-         //   anims.SetBool("runshield", true);
+             animb.SetBool("run_body",true);
+            anims.SetBool("run_shield", true);
             rb.velocity = new Vector2(speed, rb.velocity.y);
         }
         if(isrunning && corriendoizquierda)
         {
             gameObject.transform.localScale = new Vector3(-1, 1, 1);
-           // animb.SetBool("runbody", true);
-           // anims.SetBool("runshield", true);
+            animb.SetBool("run_body", true);
+            anims.SetBool("run_shield", true);
            rb.velocity = new Vector2(-speed, rb.velocity.y);
         }
         
