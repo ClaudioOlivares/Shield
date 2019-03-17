@@ -30,12 +30,12 @@ public class movimiento : MonoBehaviour {
             isrunning = true;
            // gameObject.transform.localScale = new Vector3(1, 1, 1);
             dadovuelta = false;
-           rb.velocity = new Vector2(speed, rb.velocity.y);
+            rb.velocity = new Vector2(speed, rb.velocity.y);
         }
         if (Input.GetKeyUp(KeyCode.D))
         {
-           animb.SetBool("run_body", false);
-           anims.SetBool("run_shield",false);
+            animb.SetBool("run_body", false);
+            anims.SetBool("run_shield",false);
             corriendoderecha = false;
             isrunning = false;
              //rb.velocity = new Vector2(0, rb.velocity.y);
@@ -86,7 +86,7 @@ public class movimiento : MonoBehaviour {
         {
   
             gameObject.transform.localScale = new Vector3(1, 1, 1);
-             animb.SetBool("run_body",true);
+            animb.SetBool("run_body",true);
             anims.SetBool("run_shield", true);
             rb.velocity = new Vector2(speed, rb.velocity.y);
         }
