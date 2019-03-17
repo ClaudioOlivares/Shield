@@ -31823,8 +31823,8 @@ MonoBehaviour:
     m_Bits: 256
   groundchecker: {fileID: 1527147588}
   groundcheckerradius: 0.1
-  fallmultiplayer: 2
-  lowjumpmultiplayer: 1.4
+  fallmultiplayer: 1.4
+  lowjumpmultiplayer: 1.6
   isrunning: 0
   isjumping: 0
   mirandoarriba: 0
