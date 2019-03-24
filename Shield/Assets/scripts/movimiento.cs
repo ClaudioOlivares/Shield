@@ -67,10 +67,18 @@ public class movimiento : MonoBehaviour {
         }
         if (Input.GetKeyDown(KeyCode.Space) && isgrounded)
         {
+           
             jumprequest = true;
           //  animb.SetBool("jumpbody", true);
           //  anims.SetBool("jumpshield",true);
             isjumping = true;
+            
+
+        }
+        if (isgrounded && rb.velocity.y == 0)
+        {
+            animb.SetBool("jump_body", false);
+            anims.SetBool("jump_shield", false);
         }
 
     }
@@ -80,13 +88,10 @@ public class movimiento : MonoBehaviour {
         if(jumprequest)
         {
             jump();
+            
             jumprequest = false;
         }
-        if(isgrounded && rb.velocity.y == 0)
-        {
-          //  animb.SetBool("jumpbody", false);
-           // anims.SetBool("jumpshield", false);
-        }
+     
         if (isrunning && corriendoderecha)
         {
   
@@ -113,20 +118,13 @@ public class movimiento : MonoBehaviour {
             rb.velocity += Vector2.up * Physics2D.gravity.y * (lowjumpmultiplayer - 1) * Time.deltaTime;
         }
 
-        if (rb.velocity.y < 0 )
-        {
-            rb.velocity += Vector2.up * Physics2D.gravity.y * (fallmultiplayer - 1) * Time.deltaTime;
-           
-
-        }
-        else if (rb.velocity.y > 0 && !Input.GetKey(KeyCode.Space) )
-        {
-            rb.velocity += Vector2.up * Physics2D.gravity.y * (lowjumpmultiplayer - 1) * Time.deltaTime;
-        }
+       
     }
     void jump()
     {
        // rb.velocity = new Vector2(rb.velocity.x, jumpheight);
         rb.AddForce(new Vector2(0,jumpheight));
+        animb.SetBool("jump_body", true);
+        anims.SetBool("jump_shield", true);
     }
 }
