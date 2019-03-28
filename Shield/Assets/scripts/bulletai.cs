@@ -42,14 +42,17 @@ public class bulletai : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         rb.velocity = transform.right * speed;
+        
 	}
-    private void OnCollisionEnter2D(Collision2D collision)
+   
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == gameObject.tag)
+        if (collision.gameObject.tag == gameObject.tag)
         {
             gameObject.layer = 11;
-            camshake.shakecamera(0.09f,0.28f);
-            Instantiate(particledeath,gameObject.transform.position, Quaternion.identity);
+         //   camshake.shakecamera(0.09f, 0.28f);
+            Instantiate(particledeath, gameObject.transform.position, Quaternion.identity);
             speed = -speed;
         }
         else
