@@ -15,7 +15,7 @@ public class CambiodePosicion : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.G))
+        if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             if (posicion < 2)
             {
@@ -23,7 +23,7 @@ public class CambiodePosicion : MonoBehaviour
             }
 
         }
-        if (Input.GetKeyDown(KeyCode.H))
+        if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             if (posicion > 0)
             {
